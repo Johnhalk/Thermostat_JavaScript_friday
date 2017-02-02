@@ -67,6 +67,16 @@ describe("Power Saving Mode", function(){
     expect(thermostat.temperature()).toEqual(32);
   });
 
+  it('When changing to PSM, if temperature > 25 it sets temperature to 25', function(){
+    thermostat.switchPSM();
+    var times = 13;
+    for(var i=0; i < times; i++){
+      thermostat.increaseTemperature();
+    };
+    thermostat.switchPSM();
+    expect(thermostat.temperature()).toEqual(25);
+  });
+
 });
 
 describe("Energy Usage", function(){

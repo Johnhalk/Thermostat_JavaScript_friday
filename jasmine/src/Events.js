@@ -1,8 +1,7 @@
 
-
 $(document).ready(function(){
-  var thermostat = new Thermostat();
 
+  var thermostat = new Thermostat();
 
   $("#increase-temperature").click(function(){
     thermostat.increaseTemperature()

@@ -36,7 +36,9 @@ Thermostat.prototype.isOnPSM = function() {
 };
 
 Thermostat.prototype.switchPSM = function() {
+    if(!this.isOnPSM()) { this._defaultTemperature = MAX_POWER_SAVING_MODE }
   this._onPSM = !this._onPSM;
+
 };
 
 Thermostat.prototype.resetTemperature = function(){
