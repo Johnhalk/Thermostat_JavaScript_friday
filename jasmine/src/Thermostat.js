@@ -17,16 +17,16 @@ Thermostat.prototype.temperature = function(){
 
 Thermostat.prototype.increaseTemperature = function(){
   if (this.isOnPSM() && this.temperature() >= MAX_POWER_SAVING_MODE) {
-    throw('Maximum temperature on PSM is 25 degrees');
+    return this.temperature();
   } else if (!this.isOnPSM() && this.temperature() >= MAX_TEMPERATURE) {
-    throw('Maximum temperature is 32 degrees');
+    return this.temperature();
   };
   this._defaultTemperature ++;
 };
 
 Thermostat.prototype.decreaseTemperature = function(){
   if (this.temperature() <= MIN_TEMPERATURE) {
-    throw('Temperature cannot be decreased below 10 degrees');
+    return this.temperature();
   };
   this._defaultTemperature --;
 };

@@ -18,7 +18,7 @@ describe("Default Thermostat", function(){
     for(var i=0; i < times; i++){
       thermostat.decreaseTemperature();
     };
-    expect(function(){thermostat.decreaseTemperature()}).toThrow('Temperature cannot be decreased below 10 degrees');
+    expect(thermostat.temperature()).toEqual(10)
   });
 });
 
@@ -51,20 +51,20 @@ describe("Power Saving Mode", function(){
   });
 
   it('If power saving mode is on, the maximum temperature is 25 degrees', function(){
-    var times = 5;
+    var times = 6;
     for(var i=0; i < times; i++){
       thermostat.increaseTemperature();
     };
-    expect(function(){thermostat.increaseTemperature()}).toThrow('Maximum temperature on PSM is 25 degrees');
+    expect(thermostat.temperature()).toEqual(25);
   });
 
   it('If power saving mode is off, the maximum temperature is 32 degrees', function(){
     thermostat.switchPSM();
-    var times = 12;
+    var times = 13;
     for(var i=0; i < times; i++){
       thermostat.increaseTemperature();
     };
-    expect(function(){thermostat.increaseTemperature()}).toThrow('Maximum temperature is 32 degrees');
+    expect(thermostat.temperature()).toEqual(32);
   });
 
 });
