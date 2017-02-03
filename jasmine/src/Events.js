@@ -5,10 +5,15 @@ $(document).ready(function(){
   $.get( "http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=9c01ca583b73254a087834fc09e38d23", function( response ) {
     $("#weather").text(response.name) +
     $("#weather").append(": ")
-    $("#weather").append(response.main.temp)
+    $("#weather").append(Math.floor(response.main.temp))
     $("#weather").append("°C")
     console.log(response)
 });
+
+// $("#city_selector").change(function(){
+//   var city =
+//
+// })
 
   var thermostat = new Thermostat();
 
