@@ -16,12 +16,12 @@ Thermostat.prototype.temperature = function(){
 };
 
 Thermostat.prototype.increaseTemperature = function(){
-  if (this.isOnPSM() && this.temperature() >= MAX_POWER_SAVING_MODE) {
+  if (this._onPSM === true && this.temperature() >= MAX_POWER_SAVING_MODE) {
     return this.temperature();
-  } else if (!this.isOnPSM() && this.temperature() >= MAX_TEMPERATURE) {
+  } else if (this._onPSM === false && this.temperature() >= MAX_TEMPERATURE) {
     return this.temperature();
-  };
-  this._defaultTemperature ++;
+  } else {
+  this._defaultTemperature ++; }
 };
 
 Thermostat.prototype.decreaseTemperature = function(){
@@ -32,11 +32,11 @@ Thermostat.prototype.decreaseTemperature = function(){
 };
 
 Thermostat.prototype.isOnPSM = function() {
-  return this._onPSM
+  return "power saving mode on: " + this._onPSM
 };
 
 Thermostat.prototype.switchPSM = function() {
-    if(!this.isOnPSM()) { this._defaultTemperature = MAX_POWER_SAVING_MODE }
+    if(this._onPSM == false && this._defaultTemperature > 25) { this._defaultTemperature = MAX_POWER_SAVING_MODE }
   this._onPSM = !this._onPSM;
 
 };
@@ -46,8 +46,8 @@ Thermostat.prototype.resetTemperature = function(){
 };
 
 Thermostat.prototype.checkEnergyUsage = function(){
-  if(this.temperature() <= 18) return "low-usage";
-  else if (this.temperature() <= 25) return "medium-usage";
+  if(this.temperature() <= 18) { return "low-usage"}
+  else if (this.temperature() <= 25) { return "medium-usage" }
   else {
     return "high-usage"
   }
